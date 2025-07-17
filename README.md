@@ -1,1 +1,75 @@
 # Inception
+## !!!!! (to delete)
+1. Done on a VM
+2. all files in a srcs folder
+3. Makefile at the root (set up everything -> build the DOcker images using docker-compose.yml)
+
+### Goal
+1. use docker compose
+2. one Dockerfile per service
+3. Docker image -> service -> container
+
+## Introduction
+### Container
+- paquet de code logiciel qui regroupe tout le code et les dépendances d’une application dans un format standard,
+- Il permet une exécution rapide et de fiable dans l’ensemble des environnements informatiques. (executable sur n'importe quel systeme cible -> rend les app portables)
+- Un conteneur Docker est un conteneur exécutable populaire léger et autonome, qui comprend tous les éléments nécessaires pour exécuter une application, notamment les bibliothèques, les outils système, le code et le runtime.
+- Ce moteur d'exécution de conteneur s'exécute sur le moteur d'un serveur, d'une machine ou d'une instance cloud. Le moteur exécute plusieurs conteneurs en fonction des ressources sous-jacentes disponibles.
+- Les conteneurs ne sont pas persistents et sont lances a partir d'image
+
+### Difference between container and VM
+- Les 2 rendent nos applications independantes des ressources de notre infrastructure informatique.
+- Conteneur :
+	- portabilite des applications
+	- fonctionnent independemment de la machine sur laquelle il est execute
+	- images de conteneur : des fichiers contenant les informations nécessaires à l'exécution de l'application. Les images de conteneur sont en lecture seule et ne peuvent pas être modifiées par le système informatique.
+	- plus leger
+	- Operating system ???
+- VM :
+	- copie numerique d'une machine physique.
+	- plus volumineux
+	- Hypervisor ???
+
+### Docker
+- plateforme permettant de lancer certaines applications dans des conteneurs logiciels lancée en 2013
+-  Docker utilise le noyau Linux ainsi que ses fonctionnalités pour séparer des processus afin qu'ils s'exécutent de manière indépendante.
+- Docker exécute les applications dans des conteneurs et assure la compatibilité et la cohérence dans divers environnements informatiques
+
+### Advantage of Docker
+- Une seule couche de système d’exploitation – contrairement aux machines virtuelles traditionnelles, les conteneurs Docker permettent à plusieurs conteneurs logiciels de coexister sur le même système sans nécessiter d’instances de système d’exploitation distinctes.
+- Légèreté : comme les conteneurs partagent le noyau du système hôte, ils consomment moins d’espace et nécessitent moins de ressources, tout en offrant des avantages considérables en termes de performances.
+- Environnement permettant de gagner du temps – en créant des conteneurs Docker, les développeurs peuvent encapsuler l’ensemble de l’environnement d’exécution. Celui-ci comprend l’application, ses dépendances immédiates, les binaires nécessaires et les fichiers de configuration.
+- Plus d’efficacité – Les images de conteneurs Docker sont des instantanés portables et cohérents de l’environnement d’un conteneur. Les applications peuvent être exécutées uniformément à l’aide d’une image de conteneur Docker, quel que soit le lieu ou le moment où elles ont été déployées.
+
+
+## More about Docker
+### Syntax
+- INSTRUCTION arguments
+- 1st instruction = FROM + specify the base image from which I am building
+	- Debian Trixie 13 (testing)
+	- Debian Bookworm 12 (stable)
+	- Debian Bullseye 11 (oldstable) -> this one
+- suite d'instruction afin de creer une image fonctionnelle a partir d'une image de base
+	- installation des dependances
+	- copie du code
+	- configuration de l'environnement
+	- commande de lancement de l'application
+- [Ecrire un Dockerfile](https://blog.stephane-robert.info/docs/conteneurs/images-conteneurs/ecrire-dockerfile/)
+### Key instructions
+- CMD : Specify default commands
+- FROM : create a new build stage from a base image
+- RUN : execute build commands
+- COPY : Copy files and directories
+- [etc](https://docs.docker.com/reference/dockerfile/#overview)
+
+### Images vs Containers
+|      | Image Docker | Conteneur Docker |
+| -------- | ------- | ------------------|
+| De quoi s'agit-il ?  | Fichier réutilisable et partageable utilisé pour créer des conteneurs. | Une instance d'exécution ; un logiciel intégré. |
+| Créé à partir de | Code logiciel, dépendances, bibliothèques et Dockerfile. | Une image. |
+| Composition | Couches en lecture seule. | Couches en lecture seule avec une couche de lecture-écriture supplémentaire sur le dessus. |
+| Mutabilité | Immuable. S'il y a des modifications, vous devez créer un nouveau fichier. | Mutable ; vous pouvez le modifier au moment de l'exécution si nécessaire. |
+| Quand utiliser | Pour stocker les détails de configuration de l'application sous forme de modèle. | Pour exécuter l'application. |
+
+### Docker CLI
+- command line interface to interact with Docker containers and manage different aspects of the container ecosystem directly from the command line. (create, start, stop, delete containers)

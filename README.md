@@ -72,4 +72,4 @@
 | Quand utiliser | Pour stocker les détails de configuration de l'application sous forme de modèle. | Pour exécuter l'application. |
 
 ### Docker CLI
-- command line interface to interact with Docker containers and manage different aspects of the container ecosystem directly from the command line. (create, start, stop, delete containers)
+- command line interface to interact with Docker containers and manage different aspects of the container ecosystem directly from the command line. (create, start, stop, delete containers).

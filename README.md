@@ -73,3 +73,51 @@
 
 ### Docker CLI
 - command line interface to interact with Docker containers and manage different aspects of the container ecosystem directly from the command line. (create, start, stop, delete containers)
+- Docker build
+	- Build an image from Dockerfile (. means the contexte of build - current repo)
+	- ``` docker build -t image-name:tag . ```
+	- ``` docker build -f Dockerfile.prod -t my-app:production . ```
+- Docker run
+	- execute a container from image
+- Docker ps (list containers)
+
+### Docker volumes
+- for persistent data storage (containers are ephemeral by nature, volumes allow to survive container destruction)
+- for data sharing between containers and host system
+- volumes can be named (```docker volume create app-data && docker run -v app-data:/data my-app```)
+- ```docker volume ls```
+
+### Docker networks
+- bridge network : Isolated network for containers on the same host
+- host network : Container shares the host's network stack directly, uses host's IP
+- custom networks : user defined networks
+
+## Docker Compose
+### what is it ?
+- define and manage multi- containers application in one single configuration file
+- microservice communicating with each other
+- networks and volumes automated
+- easy deployement and reproduction of environment
+### file structure of docker-compose.yml
+- services : each service = one container
+	- build or image
+	- ports
+	- environment
+	- volumes
+	- networks
+- volumes
+- networks
+### useful commands
+- docker-compose up -d          # Démarrer en arrière-plan
+- docker-compose up --build     # Rebuilder les images avant démarrage
+- docker-compose down           # Arrêter et supprimer les conteneurs
+- docker-compose down -v        # + supprimer les volumes
+- docker-compose restart api    # Redémarrer un service spécifique
+- bashdocker-compose ps             # Status des services
+- docker-compose logs           # Logs de tous les services
+- docker-compose logs -f web    # Suivre les logs du service web
+- docker-compose exec api bash  # Accéder au conteneur API
+- docker-compose pull           # Mettre à jour les images
+- bashdocker-compose up --scale web=3    # Démarrer 3 instances du service web
+- docker-compose build api          # Rebuilder seulement le service API
+- docker-compose config             # Valider la configuration

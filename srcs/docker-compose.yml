@@ -1,12 +1,19 @@
+# services:
+#   web:
+#     build: requirements/composetest/
+#     ports:
+#       - "8000:5000"
+#     develop:
+#       watch:
+#         - action: sync
+#           path: requirements/composetest/
+#           target: /code
+#   redis:
+#     image: "redis:alpine"
+
 services:
-  web:
-    build: requirements/composetest/
+  nginx:
+    build: requirements/nginx/.
+    container_name: nginx
     ports:
-      - "8000:5000"
-    develop:
-      watch:
-        - action: sync
-          path: requirements/composetest/
-          target: /code
-  redis:
-    image: "redis:alpine"
+      - "80:80"

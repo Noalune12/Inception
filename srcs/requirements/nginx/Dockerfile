@@ -1,8 +1,14 @@
 FROM alpine:3.21
+# FROM debian:latest
 WORKDIR /usr/src/app
-COPY . .
-RUN apk update && apk upgrade && apk add nginx
+# tiny
+RUN apk update && apk upgrade && apk add nginx openssl
+COPY nginx.conf ../../../etc/nginx
+COPY script.sh .
+RUN chmod +x script.sh
+RUN mkdir -p /etc/nginx/ssl
+# RUN apt update && apt upgrade && apt install -y nginx
 EXPOSE 443
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["./script.sh"]
 
-# docker run -p 80:80 nginx
+# docker run -p 8080:443 nginx

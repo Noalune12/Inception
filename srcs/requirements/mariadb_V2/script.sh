@@ -15,13 +15,13 @@
 # /usr/bin/mysql_install_db --user=mysql
 # mariadbd-safe --datadir="/var/lib/mysql"
 
-if [ ! -d "/var/lib/mysql/mysql" ]; then
+if [ ! -d "${MYSQL_DATADIR}/${MYSQL_DATABASE}" ]; then
     echo "installing .."
-    mariadb-install-db --user=mysql --datadir=/var/lib/mysql
+    mariadb-install-db --user=${MYSQL_USER} --datadir="${MYSQL_DATADIR}"
 
-    mariadbd-safe --datadir="/var/lib/mysql" &
+    mariadbd-safe --datadir="${MYSQL_DATADIR}" &
 
-    echo "Waiting for MariaDB to start..."
+    # echo "Waiting for MariaDB to start..."
     # until mariadb-admin ping --silent; do
     #     sleep 1
     # done
@@ -29,7 +29,7 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
     # Wait for MySQL to be ready
     echo "Waiting for MariaDB to start..."
     for i in $(seq 1 30); do
-        if mariadb -u root -e "SELECT 1;" >/dev/null 2>&1; then
+        if mariadb -u ${MYSQL_ROOT_USER} -e "SELECT 1;" >/dev/null 2>&1; then
             echo "MariaDB is ready!"
             break
         fi
@@ -38,21 +38,23 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
     done
 
     # Check if MySQL is actually running
-    if ! mariadb -u root -e "SELECT 1;" >/dev/null 2>&1; then
+    if ! mariadb -u ${MYSQL_ROOT_USER} -e "SELECT 1;" >/dev/null 2>&1; then
         echo "Failed to start MariaDB"
         exit 1
     fi
 
-    mariadb -u root -p"my_new_password" -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'my_new_password';"
-    mariadb -u root -p"my_new_password" -e "ALTER USER 'mysql'@'localhost' IDENTIFIED BY 'my_new_password';"
+    mariadb -u ${MYSQL_ROOT_USER} -p"${MYSQL_ROOT_PWD}" -e "ALTER USER '${MYSQL_USER}'@'localhost' IDENTIFIED BY '${MYSQL_USER_PWD}';"
+    mariadb -u ${MYSQL_ROOT_USER} -p"${MYSQL_ROOT_PWD}" -e "CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'localhost'";
+    mariadb -u ${MYSQL_ROOT_USER} -p"${MYSQL_ROOT_PWD}" -e "ALTER USER '${MYSQL_ROOT_USER}'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PWD}';"
+    mariadb -u ${MYSQL_ROOT_USER} -p"${MYSQL_ROOT_PWD}" -e "ALTER USER '${MYSQL_USER}'@'localhost' IDENTIFIED BY '${MYSQL_USER_PWD}';"
     # CREATE DATABASE + CREATE USERS
-    mariadb -u root -p"my_new_password" -e "FLUSH PRIVILEGES;"
+    mariadb -u ${MYSQL_ROOT_USER} -p"${MYSQL_ROOT_PWD}" -e "FLUSH PRIVILEGES;"
 
-    mariadb-admin -u root -p"my_new_password" shutdown
+    mariadb-admin -u ${MYSQL_ROOT_USER} -p"${MYSQL_ROOT_PWD}" shutdown
 fi
 
 
-exec mariadbd-safe --datadir="/var/lib/mysql"
+exec mariadbd-safe --datadir="${MYSQL_DATADIR}"
 # /usr/bin/mariadbd --basedir=/usr --datadir=/var/lib/mysql --plugin-dir=/usr/lib/mariadb/plugin --user=mysql --pid-file=/run/mysqld/mariadb.pid
 
 # exec mysqld --user=mysql

@@ -15,5 +15,14 @@ services:
   nginx:
     build: requirements/nginx/.
     container_name: nginx
+    env_file:
+      - .env
     ports:
       - "8080:443"
+  mariadb:
+    build: requirements/mariadb_V2/.
+    container_name: mariadb
+    env_file:
+     - .env
+    ports:
+      - "5000:3306"

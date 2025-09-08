@@ -11,5 +11,5 @@ RUN apk add mariadb-openrc
 COPY script.sh .
 RUN chmod +x script.sh
 EXPOSE 3306
-VOLUME ["/var/lib/mysql"]
+# VOLUME ["/var/lib/mysql"]
 ENTRYPOINT ["./script.sh"]

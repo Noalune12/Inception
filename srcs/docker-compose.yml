@@ -18,7 +18,15 @@ services:
     env_file:
       - .env
     ports:
-      - "8080:443"
+      - "443:443"
+    networks:
+      - wp-site
+    depends_on:
+      - wordpress
+    volumes:
+      - www-data:/var/www/html/wordpress
+    # volumes:
+    #   - ./web:/var/www/html
   mariadb:
     build: requirements/mariadb_V2/.
     container_name: mariadb
@@ -26,3 +34,36 @@ services:
      - .env
     ports:
       - "5000:3306"
+    networks:
+      - wp-site
+    volumes:
+      - db-data:/var/lib/mysql
+
+  wordpress:
+    build: requirements/wordpress/.
+    container_name: wordpress
+    networks:
+      - wp-site
+    volumes:
+      - www-data:/var/www/html/wordpress
+    depends_on:
+      - mariadb
+    # volumes:
+    #   - ./web:/var/www/html
+    # depends_on:
+    #   nginx:
+    #     condition: service_started
+networks:
+  wp-site:
+    driver: bridge
+volumes:
+  www-data:
+    driver_opts:
+      type: none
+      device: /home/lbuisson/data/www-data
+      o: bind
+  db-data:
+    driver_opts:
+      type: none
+      device: /home/lbuisson/data/db-data
+      o: bind

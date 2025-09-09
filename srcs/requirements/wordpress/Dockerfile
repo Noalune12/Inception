@@ -32,7 +32,7 @@ RUN apk update && apk upgrade && apk add --no-cache php83 \
 
 # Create necessary directories
 RUN mkdir -p /var/www/html /var/log/php83 /run/php-fpm83
-
+RUN mkdir -p /run/php && adduser -D -g 'www' www
 # Download and install WordPress
 WORKDIR /tmp
 RUN wget https://wordpress.org/latest.tar.gz && \
@@ -51,11 +51,11 @@ COPY www.conf /etc/php83/php-fpm.d/.
 EXPOSE 9000
 
 WORKDIR /var/www/html
-CMD ["php-fpm83", "-R", "--nodaemonize", "--fpm-config", "/etc/php83/php-fpm.conf"]
+# CMD ["php-fpm83", "-R", "--nodaemonize", "--fpm-config", "/etc/php83/php-fpm.conf"]
 
-# COPY script.sh .
+COPY script.sh .
 
 
-# RUN chmod +x script.sh
+RUN chmod +x script.sh
 
-# ENTRYPOINT ["./script.sh"]
+ENTRYPOINT ["./script.sh"]

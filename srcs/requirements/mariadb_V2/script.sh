@@ -21,33 +21,34 @@ if [ ! -d "${MYSQL_DATADIR}/${MYSQL_DATABASE}" ]; then
 
     mariadbd-safe --datadir="${MYSQL_DATADIR}" &
 
-    # echo "Waiting for MariaDB to start..."
-    # until mariadb-admin ping --silent; do
-    #     sleep 1
-    # done
-
-    # Wait for MySQL to be ready
     echo "Waiting for MariaDB to start..."
-    for i in $(seq 1 30); do
-        if mariadb -u ${MYSQL_ROOT_USER} -e "SELECT 1;" >/dev/null 2>&1; then
-            echo "MariaDB is ready!"
-            break
-        fi
-        echo "Waiting... ($i/30)"
+    until mariadb-admin ping --silent; do
         sleep 1
     done
 
-    # Check if MySQL is actually running
-    if ! mariadb -u ${MYSQL_ROOT_USER} -e "SELECT 1;" >/dev/null 2>&1; then
-        echo "Failed to start MariaDB"
-        exit 1
-    fi
+    # # Wait for MySQL to be ready
+    # echo "Waiting for MariaDB to start..."
+    # for i in $(seq 1 30); do
+    #     if mariadb -u ${MYSQL_ROOT_USER} -e "SELECT 1;" >/dev/null 2>&1; then
+    #         echo "MariaDB is ready!"
+    #         break
+    #     fi
+    #     echo "Waiting... ($i/30)"
+    #     sleep 1
+    # done
 
+    # # Check if MySQL is actually running
+    # if ! mariadb -u ${MYSQL_ROOT_USER} -e "SELECT 1;" >/dev/null 2>&1; then
+    #     echo "Failed to start MariaDB"
+    #     exit 1
+    # fi
+
+    mariadb -u ${MYSQL_ROOT_USER} -p"${MYSQL_ROOT_PWD}" -e "CREATE DATABASE IF NOT EXISTS ${MYSQL_DATABASE};"
+    mariadb -u ${MYSQL_ROOT_USER} -p"${MYSQL_ROOT_PWD}" -e "CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'localhost';"
     mariadb -u ${MYSQL_ROOT_USER} -p"${MYSQL_ROOT_PWD}" -e "ALTER USER '${MYSQL_USER}'@'localhost' IDENTIFIED BY '${MYSQL_USER_PWD}';"
-    mariadb -u ${MYSQL_ROOT_USER} -p"${MYSQL_ROOT_PWD}" -e "CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'localhost'";
     mariadb -u ${MYSQL_ROOT_USER} -p"${MYSQL_ROOT_PWD}" -e "ALTER USER '${MYSQL_ROOT_USER}'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PWD}';"
     mariadb -u ${MYSQL_ROOT_USER} -p"${MYSQL_ROOT_PWD}" -e "ALTER USER '${MYSQL_USER}'@'localhost' IDENTIFIED BY '${MYSQL_USER_PWD}';"
-    # CREATE DATABASE + CREATE USERS
+    mariadb -u ${MYSQL_ROOT_USER} -p"${MYSQL_ROOT_PWD}" -e "GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'localhost';"
     mariadb -u ${MYSQL_ROOT_USER} -p"${MYSQL_ROOT_PWD}" -e "FLUSH PRIVILEGES;"
 
     mariadb-admin -u ${MYSQL_ROOT_USER} -p"${MYSQL_ROOT_PWD}" shutdown

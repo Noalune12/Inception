@@ -39,7 +39,7 @@
 
 define( 'DB_NAME', 'wordpress' );
 define( 'DB_USER', 'lbuisson' );
-define( 'DB_PASSWORD', 'password' );
+define( 'DB_PASSWORD', 'UsTGHe1y0eUD4yBO5Mqe' );
 define( 'DB_HOST', 'mariadb:3306' );
 define( 'DB_CHARSET', 'utf8' );
 define( 'DB_COLLATE', '' );

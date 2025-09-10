@@ -22,40 +22,39 @@ RUN apk update && apk upgrade && apk add --no-cache php83 \
     php83-simplexml \
     php83-xmlwriter \
     curl \
-    wget \
-    unzip
-
-
-# Create PHP-FPM user
-# RUN addgroup -g 82 www-data && \
-#     adduser -u 82 -D -s /bin/sh -G www-data www-data
+    # wget \
+    # unzip \
+    mariadb-client \
+    bash
 
 # Create necessary directories
-RUN mkdir -p /var/www/html /var/log/php83 /run/php-fpm83
-RUN mkdir -p /run/php && adduser -D -g 'www' www
+RUN echo "memory_limit = 512M" >> /etc/php83/php.ini
+RUN cd /usr/local/bin && \
+    curl -o wp -L https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+    chmod +x wp
+
+# RUN mkdir -p /var/www/html
+
 # Download and install WordPress
-WORKDIR /tmp
-RUN wget https://wordpress.org/latest.tar.gz && \
-    tar -xzf latest.tar.gz && \
-    mkdir -p /var/www/html/wordpress && \
-    mv wordpress/* /var/www/html/wordpress/ && \
-    rm -rf /tmp/wordpress /tmp/latest.tar.gz
+# WORKDIR /tmp
+# RUN wget https://wordpress.org/latest.tar.gz && \
+#     tar -xzf latest.tar.gz && \
+#     # mkdir -p /var/www/html/wordpress && \
+#     mv wordpress/* /var/www/html/ && \
+#     rm -rf /tmp/wordpress /tmp/latest.tar.gz
 
 # Set proper permissions
 # RUN chown -R www-data:www-data /var/www/html && \
 #     chmod -R 755 /var/www/html
 
-COPY wp-config.php /var/www/html/wordpress/wp-config.php
-COPY www.conf /etc/php83/php-fpm.d/.
+# COPY wp-config.php /var/www/html/wp-config.php
+COPY /conf/www.conf /etc/php83/php-fpm.d/.
 
 EXPOSE 9000
 
 WORKDIR /var/www/html
-# CMD ["php-fpm83", "-R", "--nodaemonize", "--fpm-config", "/etc/php83/php-fpm.conf"]
 
-COPY script.sh .
-
-
+COPY /tools/script.sh .
 RUN chmod +x script.sh
 
 ENTRYPOINT ["./script.sh"]

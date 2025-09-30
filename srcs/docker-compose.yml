@@ -52,6 +52,14 @@ services:
       - www-data:/var/www/html
     depends_on:
       - mariadb
+      - redis
+
+  redis:
+    container_name: redis
+    build: requirements/bonus/redis/.
+    networks:
+      - wp-site
+    restart: always
 
 networks:
   wp-site:

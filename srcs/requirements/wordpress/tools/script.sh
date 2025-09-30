@@ -25,7 +25,27 @@ if [ ! -f wp-config.php ]; then
     if ! wp user get $WP_USER --allow-root > /dev/null 2>&1; then
         wp user create $WP_USER $WP_USER_MAIL --role=author --user_pass=$WP_USER_PWD --allow-root
     fi
+
+    wp plugin install redis-cache --activate --allow-root
+    wp config set WP_REDIS_HOST redis --allow-root
+    wp config set WP_REDIS_PORT 6379 --raw --allow-root
+    wp redis enable --allow-root
+
 else
     echo "WordPress is already installed."
 fi
+
+chown -R www:www-data /var/www/html
+
 exec php-fpm83 -F
+
+# wp redis status | grep Met
+# redis-cli -h redis ping
+# PING                # test connection
+# INFO stats          # view cache hit/miss stats
+# KEYS *              # list keys (be cautious)
+# DBSIZE              # count keys
+# GET keyname         # get value of key
+# TTL keyname         # check expiration
+# FLUSHDB             # clear current DB
+# QUIT                # exit CLI

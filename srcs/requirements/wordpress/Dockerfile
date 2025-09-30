@@ -21,7 +21,7 @@ RUN echo "memory_limit = 512M" >> /etc/php83/php.ini
 RUN cd /usr/local/bin && \
     curl -o wp -L https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
     chmod +x wp
-
+RUN cd -
 # RUN mkdir -p /var/www/html
 
 # Download and install WordPress
@@ -43,7 +43,11 @@ EXPOSE 9000
 
 WORKDIR /var/www/html
 
+
 COPY /tools/script.sh .
 RUN chmod +x script.sh
+
+RUN adduser -S -D -G www-data www
+# RUN chown -R www:www-data /var/www/html
 
 ENTRYPOINT ["./script.sh"]

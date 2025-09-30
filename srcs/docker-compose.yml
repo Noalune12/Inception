@@ -15,10 +15,9 @@ services:
   mariadb:
     build: requirements/mariadb/.
     container_name: mariadb
+    restart: always
     env_file:
      - .env
-    ports:
-      - "5000:3306"
     networks:
       - wp-site
     volumes:
@@ -28,7 +27,7 @@ services:
     build: requirements/nginx/.
     container_name: nginx
     # init: true
-    # restart: always
+    restart: always
     env_file:
       - .env
     ports:
@@ -44,6 +43,9 @@ services:
   wordpress:
     build: requirements/wordpress/.
     container_name: wordpress
+    restart: always
+    env_file:
+      - .env
     networks:
       - wp-site
     volumes:

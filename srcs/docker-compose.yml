@@ -55,6 +55,7 @@ services:
     depends_on:
       - mariadb
       - redis
+    # healthcheck
 
   redis:
     container_name: redis
@@ -63,12 +64,28 @@ services:
       - wp-site
     restart: always
 
-  static-site:
-    container_name: static-site
-    build: requirements/bonus/static-site/.
+  # static-site:
+  #   container_name: static-site
+  #   build: requirements/bonus/static-site/.
+  #   restart: always
+  #   networks:
+  #     - s-site
+
+  ftp:
+    build: requirements/bonus/ftp/.
+    container_name: ftp
     restart: always
+    env_file:
+      - .env
     networks:
-      - s-site
+      - wp-site
+    volumes:
+      - www-data:/var/www/html:rw
+    depends_on:
+      wordpress:
+        condition: service_started #healthy
+    ports:
+      - "21:21"
 
 networks:
   wp-site:

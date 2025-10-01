@@ -1,5 +1,6 @@
 #!/bin/sh 
 
+rm -f .wp-built
 mariadb-admin ping --protocol=tcp --host=mariadb -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" --wait >/dev/null 2>/dev/null
 if [ ! -f wp-config.php ]; then
     echo "Installing WordPress..."
@@ -36,7 +37,7 @@ else
 fi
 
 chown -R www:www-data /var/www/html
-
+touch .wp-built
 exec php-fpm83 -F
 
 # wp redis status | grep Met

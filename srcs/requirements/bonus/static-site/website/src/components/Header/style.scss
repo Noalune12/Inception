@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import '../../variables.scss';
+
+header {
+        display: flex;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        background-color: rgba($cream-color, 0.9);
+        padding: 5px 50px ;
+        z-index: 1000; 
+        transition: background-color 0.3s ease; 
+    
+        &.scrolled {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        }
+        @include tablette {
+            padding: 3%;
+        }
+
+        @include mobile {
+            flex-direction: column;
+            align-items: center;
+            padding: 2%;
+        }
+
+    .page-title {
+        text-decoration: none;
+        .header-logo {
+            width: 100px;
+            @include tablette {
+                width: 75px;
+            }
+            @include mobile {
+                width: 50px;
+            }
+        }
+    }
+
+    nav {
+        font-size: 20px;
+        text-decoration: none;
+        margin-left: 40px;
+        flex-wrap: wrap;
+        color: black;
+        @include tablette {
+            font-size: 16px;
+            margin-left: 0;
+        }
+        @include mobile {
+            font-size: 15px;
+            margin-left: 0;
+        }
+        ul {
+            display: flex;
+            padding-inline-start: 0px;
+            li {
+                position: relative;
+                list-style-type: none;
+                text-align: center;
+                padding: 10px 15px;
+                border-bottom: 2px solid rgb(230, 230, 230);
+                &:hover {
+                    text-shadow: rgba(0, 0, 0, 0.5) 1px 0 10px;
+                    cursor: pointer;
+                }
+                &.active {
+                    border-bottom: 2px solid $purple-color;
+                }
+                @include tablette {
+                    padding: 8px;
+                }
+                @include mobile {
+                    padding: 8px;
+                }
+            }
+        }
+    }
+
+    .back {
+        transition: ease 200ms;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 15px;
+        img {
+            height: 20px;
+            @include tablette {
+                height: 18px;
+            }
+            @include mobile {
+                height: 15px;
+            }
+        }
+        p {
+            font-size: 22px;
+            color: black;
+            @include tablette {
+                font-size: 18px;
+            }
+            @include mobile {
+                font-size: 16px;
+            }
+        }
+        &:hover {
+            text-shadow: rgba(0, 0, 0, 0.5) 1px 0 10px;
+            cursor: pointer;
+            transform: scale(1.03);
+        }
+
+    }
+
+    
+    
+}

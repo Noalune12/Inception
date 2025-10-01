@@ -1,0 +1,43 @@
+@import '../../variables.scss';
+
+footer {
+    background-color: $purple-color;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    .link-social-media {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 50%;
+        a {
+            transition: color ease 300ms;
+            &:hover {
+                color: $cream-color;
+            }
+            svg {
+                font-size: 40px;
+                @include mobile {
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+    p {
+        font-weight: 700;
+        text-align: center;
+        @include mobile {
+            font-size: 14px;
+        }
+    }
+    a {
+        color: black;
+        text-align: center;
+        @include mobile {
+            font-size: 12px;
+        }
+    }
+}

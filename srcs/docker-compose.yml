@@ -32,8 +32,10 @@ services:
       - .env
     ports:
       - "443:443"
+      - "8443:8443"
     networks:
       - wp-site
+      - s-site
     depends_on:
       - wordpress
       - mariadb
@@ -61,8 +63,17 @@ services:
       - wp-site
     restart: always
 
+  static-site:
+    container_name: static-site
+    build: requirements/bonus/static-site/.
+    restart: always
+    networks:
+      - s-site
+
 networks:
   wp-site:
+    driver: bridge
+  s-site:
     driver: bridge
 
 volumes:

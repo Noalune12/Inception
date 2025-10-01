@@ -1,0 +1,36 @@
+@import '../../variables.scss';
+
+.mes-projets {
+    padding: 50px;
+    text-align: center;
+    background: $cream-color;
+    position: relative;
+    @include tablette {
+        padding: 40px 5%;
+    }
+    @include mobile {
+        padding: 40px 5%;
+    }
+    .mes-projets-title {
+        padding-bottom: 50px;
+        font-size: 38px;
+        font-weight: 900;
+        @include mobile {
+            font-size: 30px;
+        }
+    }
+    .projects-cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        gap: 50px;
+        @include tablette {
+            justify-content: start;
+        }
+        @include mobile {
+            justify-content: center;
+        }
+    }
+}

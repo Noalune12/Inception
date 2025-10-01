@@ -1,0 +1,157 @@
+[
+    {
+        "id": "Booki",
+        "title" : "Booki, site d'agence immobilière",
+        "cover": "https://i.ibb.co/tb7FYCc/booki1.webp",
+        "subtitle" : "Créer la page d'accueil d'une agence de voyage en utilisant HTML et CSS",
+        "description" : [
+            { "text": "Après l'étude des maquettes Figma mises à disposition (Desktop, Tablet, Mobile), j'ai dû créer la page d'accueil du site Booki tout en intégrant une ", "bold": false },
+            { "text": "interface responsive", "bold": true },
+            { "text": ". Le site doit pouvoir ", "bold": false },
+            { "text": "fonctionner sur tous les appareils et s'adapter à toutes tailles d'écran.", "bold": true }
+          ],
+        "skills" : [
+            "Versionnage du projet avec Git et Github",
+            "Installer un environnement de développement front-end",
+            "Implémenter une interface responsive avec HTML et CSS",
+            "Intégrer du contenu conformément à la maquette avec HTML et CSS"
+        ],
+        "problem" :"La problématique rencontrée consistait à rendre le site responsive sur trois types d'écrans différents tout en respectant la maquette initiale. Pour y parvenir, j'ai utilisé des media queries, des règles CSS qui permettent d'appliquer des styles spécifiques en fonction des caractéristiques de l'appareil, comme sa largeur d'écran, sa résolution ou son orientation.",
+        "tags" : [
+            "HTML",
+            "CSS"
+        ],
+        "github" : "https://github.com/Noalune12/Booki",
+        "link" : "https://noalune12.github.io/Booki/",
+        "year" : "2024"
+    },
+    {
+        "id": "Sophie-Bluel",
+        "title" : "Sophie Bluel, portfolio d'une architecte",
+        "cover": "https://i.ibb.co/NZMrGWS/sophie-bluel1.png",
+        "subtitle" : "Créer une page web dynamique pour le site internet d'une architecte d'intérieur en utilisant JavaScript et en communiquant avec une API.",
+        "description" : [
+            { "text": "En m'appuyant sur le code back-end déjà réalisé et en reprenant une première version statique du code front-end, j'ai dû travailler sur la conception du site de Sophie Bluel, architecte d'intérieur. Voici les ajouts réalisés : ", "bold": false },
+            { "text": "récupération dynamique des images de la galerie, ajout des filtres par catégories, création d'une page de connexion pour l'administrateur, création d'une modale", "bold": true },
+            { "text": " accessible uniquement après connexion permettant à l'administrateur d'ajouter et supprimer des projets.", "bold": false }
+          ],
+        "skills" : [
+            "Gérer les événements utilisateurs avec JavaScript",
+            "Manipuler les éléments du DOM avec JavaScript",
+            "Récupérer les données utilisateurs dans le JavaScript via des formulaires",
+            "Intégrer du contenu conformément à la maquette avec HTML et CSS",
+            "Développer lefront-end à partir d'un back-end déjà existant",
+            "Communiquer avec une API REST"
+        ],
+        "problem" : "L'une des problématiques rencontrées dans ce projet concerne la gestion de la communication entre JavaScript, l'API, et la modale d'upload de nouveaux médias. Assurer une interaction fluide et sans erreur entre ces composants est essentiel pour garantir une bonne expérience utilisateur et le bon fonctionnement de la page de l'administrateur. Pour résoudre cette problématique, j'ai implémenté une série de bonnes pratiques et de techniques spécifiques : gestion de spomesses et des asynchrones, validation et gestion des erreurs, modale réacive.",
+        "tags" : [
+            "HTML",
+            "CSS", 
+            "JavaSript"
+        ],
+        "github" : "https://github.com/Noalune12/sophie-bluel",
+        "year" : "2024"
+    },
+    {
+        "id" : "Nina-Carducci",
+        "title" : "Nina Carducci, site de photographe",
+        "cover": "https://i.ibb.co/WgPFxJ6/nina-carducci1.png",
+        "subtitle": "Débugger, améliorer le SEO et optimiser un site de photographe à l'aide de Lighthouse et Chrome DevTools.",
+        "description": [
+            { "text": "Sur un site déjà existant, j'ai pu ", "bold": false },
+            { "text": "améliorer la performance ", "bold": true },
+            { "text": "du site en obtenant un score Lighthouse supérieur à 90, ", "bold": false },
+            { "text": "en optimisant les images ", "bold": true },
+            { "text": "pour réduire le temps de chargement du site. J'ai également ", "bold": false },
+            { "text": "optimisé le référencement ", "bold": true },
+            { "text": "(SEO, référencement local avec Schemo.org et réseaux sociaux avec les balises méta). Enfin, j'ai pu ", "bold": false },
+            { "text": "améliorer l'accessibilité ", "bold": true },
+            { "text": "en optimisant notamment le code et sa structure. Le site contenait aussi certains bugs à corriger.", "bold": false }
+          ],
+        "skills" : [
+            "Optimiser les performances d’un site web",
+            "Débugger un site web grâce aux Chrome DevTools",
+            "Rédiger un rapport d'intervention et un cahier de recette",
+            "Optimiser le SEO technique et référencement local et réseaux sociaux",
+            "Améliorer l'accessibilité"
+        ],
+        "problem" : "La problématique rencontrée dans ce projet concernait l'amélioration des performances pour atteindre un score supérieur à 90. Pour ce faire, j'ai analysé les résultats de l'audit Google Lighthouse et identifié les éléments nécessitant un temps de chargement important, afin de les optimiser.",
+        "tags" : [
+            "SEO",
+            "Performance",
+            "Accessibilité",
+            "Debug"
+        ],
+        "github" : "https://github.com/Noalune12/nina-carducci",
+        "link":"https://noalune12.github.io/nina-carducci/",
+        "year" : "2024"
+    },
+    {
+        "id": "Kasa",
+        "title" : "Kasa, site de location immobilière",
+        "cover": "https://i.ibb.co/HH2smS2/kasa1.png",
+        "subtitle":"Créer une application web de location immobilière avec React",
+        "description" : [
+            { "text": "A partir de maquettes conçues sur Figma, j'ai pu développer l'ensemble d'une ", "bold": false },
+            { "text": "application avec React en y intégrant des composants responsives et des routes React Router. ", "bold": true },
+            { "text": "L'application a été initialisée avec ", "bold": false },
+            { "text": "Create React App ", "bold": true },
+            { "text": "et les informations des logements ont été ajouté à partir d'un fichier JSON. Pour la mise en page, j'ai pu utiliser le préprocesseur ", "bold": false },
+            { "text": "SASS ", "bold": true },
+            { "text": "qui permet de gérer le CSS et implémenter des animations afin de créer une application web interactive et visuellement attrayante.", "bold": false }
+          ],
+        "skills" : [
+            "Configurer la navigation entre les pages de l'application avec React Router",
+            "Initialiser une application avec Create React App",
+            "Développer des éléments de l'interface d'un site web grâce à des composants React",
+            "Développer une interface web avec Sass et Mettre en œuvre des animations CSS",
+            "Publier une app React sur github pages"
+        ],
+        "problem" : "Une des problématiques rencontrées dans ce projet concerne la gestion des composants collapsibles (collapse) dans React. Le défi était d'assurer que ces composants s'ouvrent et se ferment correctement tout en maintenant une performance optimale et une expérience utilisateur fluide. Pour résoudre cette problématique, j'ai utilisé le hook useState de React pour gérer l'état des composants collapsibles et useEffect pour effectuer les mises à jour nécessaires en réponse aux changements d'état. ",
+        "tags" : [
+            "React",
+            "Sass"
+        ],
+        "github" : "https://github.com/Noalune12/kasa",
+        "link":"https://noalune12.github.io/kasa/",
+        "year" : "2024"
+    },
+    {
+        "id": "Mon-Vieux-Grimoire",
+        "title" : "Mon vieux grimoire, site de notation de livre",
+        "cover": "https://i.ibb.co/9gyCJDt/mon-vieux-grimoire1.png",
+        "subtitle": "Développer le back-end d'un site de notation de livres",
+        "description" : [
+            { "text": "Afin de développer le back-end d'un site de notation de livre, j'ai pu créer ", "bold": false },
+            { "text": "un serveur avec Express et le connecter à une base de données MongoDB, ", "bold": true },
+            { "text": "tout en mettant en place de la structure du serveur et la gestion de la communication entre le serveur et la base de données. J'ai ainsi ", "bold": false },
+            { "text": "développé les modèles de données et implémenté des opérations CRUD ", "bold": true },
+            { "text": "(Créer, Lire, Mettre à jour, Supprimer) pour la gestion des livres et des notations. J'ai pu également implémenter ", "bold": false },
+            { "text": "un système d'authentification sécurisé  ", "bold": true },
+            { "text": "pour les utilisateurs du site. Le projet comprend également ", "bold": false},
+            { "text": "la gestion du téléchargement et de l'optimisation des images", "bold": true},
+            { "text": ", ainsi que ", "bold": false},
+            { "text": "l'ajout de fonctionnalités pour noter les livres et calculer la note moyenne. ", "bold": true},
+            { "text": "Tout au long du projet, les bonnes pratiques du ", "bold": false},
+            { "text": "Green Code ", "bold": true},
+            { "text": "pour réduire l'empreinte écologique du site ont été respecté.", "bold": false }
+          ],
+        "skills" : [
+            "Implémenter un modèle logique de données conformément à la réglementation",
+            "Mettre en œuvre des opérations CRUD de manière sécurisée",
+            "Stocker des données de manière sécurisée",
+            "Ajout d'une base de données (MongoDB)",
+            "Créer un serveur HTPP avec Node et Express",
+            "Mise en place d'un système d'authentification"
+        ],
+        "problem" : "L'une des principales problématiques de ce projet est de garantir la sécurité des données tout en implémentant un système d'authentification pour les utilisateurs du site. Il est crucial de protéger les informations sensibles et d'assurer une communication sécurisée entre le serveur et la base de données. Pour résoudre cette problématique, plusieurs mesures ont été mises en place : Utilisation de Mongoose pour modéliser les données et Implémentation de l'authentification JWT.",
+        "tags" : [
+            "Node.js",
+            "Express.js",
+            "MongoDB",
+            "Mongoose"
+        ],
+        "github" : "https://github.com/Noalune12/mon-vieux-grimoire-backend",
+        "year" : "2024"
+    }
+]

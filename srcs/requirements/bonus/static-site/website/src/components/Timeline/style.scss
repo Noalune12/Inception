@@ -1,0 +1,22 @@
+@import '../../variables.scss';
+
+.vertical-timeline-element-date {
+    color: black !important;
+    font-weight: 900 !important;
+    font-size: 20px !important;
+}
+
+.vertical-timeline--two-columns .vertical-timeline-element-content .vertical-timeline-element-date {
+    width: 30% !important;
+    text-align: start;
+    @include medium-screen {
+        width: 100% !important;        
+    }
+}
+.timeline-list {
+    padding-top : 20px;
+    line-height: 20px;
+    li {
+        list-style: none;
+    }
+}

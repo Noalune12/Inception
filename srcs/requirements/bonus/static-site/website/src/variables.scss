@@ -1,0 +1,40 @@
+$purple-color : #A59AB1;
+$cream-color : #f5f0e8;
+
+$breakpoint-mobile: 481px;
+$breakpoint-tablette: 768px;
+$breakpoint-medium-screen: 1169px;
+$breakpoint-dev-web: 880px;
+$breakpoint-projet: 1050px;
+
+@mixin mobile {
+  @media screen and (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+@mixin tablette {
+  @media screen and (max-width: #{$breakpoint-tablette}) and (min-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+@mixin medium-screen {
+    @media screen and (max-width: #{$breakpoint-medium-screen}) {
+      @content;
+    }
+  }
+
+@mixin dev-web {
+  @media screen and (max-width: #{$breakpoint-dev-web}) and (min-width: #{$breakpoint-tablette}) {
+    @content;
+  }
+}
+
+@mixin projet {
+  @media screen and (max-width: #{$breakpoint-projet}) and (min-width: #{$breakpoint-tablette}) {
+    @content;
+  }
+}
+
+

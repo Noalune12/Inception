@@ -1,0 +1,43 @@
+@import '../../variables.scss';
+
+.erreur-404 {
+    background-color: $cream-color;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    padding: 0 20px;
+    .texte-404 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 6rem;
+        font-weight: bold;
+        color: $purple-color;
+        animation: bounce 1s infinite alternate;
+        margin-bottom: 20px;
+        @keyframes bounce {
+            0% {
+            transform: translateY(0);
+            }
+            100% {
+            transform: translateY(-20px);
+            }
+        }
+        span {
+            margin: 0 10px;
+            -webkit-text-stroke: 2px black;
+            text-shadow: 2px 2px 4px #000000;
+        }
+    }
+    .message-erreur {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #333;
+        text-align: center;
+    }
+    
+}
+

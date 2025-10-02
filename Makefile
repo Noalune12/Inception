@@ -4,7 +4,7 @@ DATA_DIR := $(HOME)/data
 WP_DIR := $(DATA_DIR)/www-data
 DB_DIR := $(DATA_DIR)/db-data
 
-all: set_up_volumes build up
+all: set_up_volumes up
 
 # watch: build
 # 	docker compose -f $(COMPOSE_FILE) up --watch
@@ -25,7 +25,7 @@ build:
 
 up:
 	@echo "Starting services"
-	docker compose -f $(COMPOSE_FILE) up -d
+	docker compose -f $(COMPOSE_FILE) up -d --build
 	@echo "Services started!"
 
 stop:

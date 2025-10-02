@@ -40,7 +40,7 @@ down:
 
 clean:
 	docker compose -f $(COMPOSE_FILE) down -v --rmi all --remove-orphans
-	docker system prune -a
+	docker system prune -a -f
 	@sudo rm -rf $(WP_DIR)/
 	@sudo rm -rf $(DB_DIR)/
 
@@ -48,7 +48,7 @@ ps:
 	docker compose -f $(COMPOSE_FILE) ps
 
 fclean: clean
-	docker system prune -a --volumes
+	docker system prune -a --volumes -f
 	docker network prune --force
 	docker volume prune --force
 

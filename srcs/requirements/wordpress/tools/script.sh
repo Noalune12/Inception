@@ -38,6 +38,7 @@ fi
 
 chown -R www:www-data /var/www/html
 touch .wp-built
+
 exec php-fpm83 -F
 
 # wp redis status | grep Met

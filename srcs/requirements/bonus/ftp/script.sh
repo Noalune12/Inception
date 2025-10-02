@@ -9,11 +9,11 @@ while [ ! -f /var/www/html/.wp-built ]; do
 done
 echo "Wordpress is ready, starting FTP"
 # sleep 15
-adduser -D -G www-data -h /var/www/html ftpuser
-# addgroup ftpuser www-data
-echo "ftpuser:ftppass" | chpasswd 
-# mkdir -p /home/ftpuser/wordpress
-chown -R ftpuser:www-data /var/www/html
+adduser -D -G www-data -h /var/www/html $FTP_USER
+# addgroup $FTP_USER www-data
+echo "$FTP_USER:$FTP_PWD" | chpasswd 
+# mkdir -p /home/$FTP_USER/wordpress
+chown -R $FTP_USER:www-data /var/www/html
 chmod -R 775 /var/www/html
 rm /var/www/html/.wp-built
 

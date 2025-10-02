@@ -1,5 +1,5 @@
 FROM alpine:3.21
-RUN apk update && apk upgrade && apk add --no-cache php83 \
+RUN apk add --no-cache php83 \
     php83-fpm \
     php83-mysqli \
     php83-phar \

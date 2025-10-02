@@ -27,6 +27,11 @@ if [ ! -f wp-config.php ]; then
         wp user create $WP_USER $WP_USER_MAIL --role=author --user_pass=$WP_USER_PWD --allow-root
     fi
 
+    if [ ! -d /var/www/html/wp-content/themes/blocksy ]; then
+        wp theme install blocksy --activate --allow-root --path=/var/www/html
+    fi
+    wp theme activate blocksy --allow-root --path=/var/www/html
+
     wp plugin install redis-cache --activate --allow-root
     wp config set WP_REDIS_HOST redis --allow-root
     wp config set WP_REDIS_PORT 6379 --raw --allow-root

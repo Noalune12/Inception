@@ -13,7 +13,7 @@ adduser -D -G www-data -h /var/www/html $FTP_USER
 # addgroup $FTP_USER www-data
 echo "$FTP_USER:$FTP_PWD" | chpasswd 
 # mkdir -p /home/$FTP_USER/wordpress
-chown -R $FTP_USER:www-data /var/www/html
+# chown -R $FTP_USER:www-data /var/www/html
 chmod -R 775 /var/www/html
 rm /var/www/html/.wp-built
 

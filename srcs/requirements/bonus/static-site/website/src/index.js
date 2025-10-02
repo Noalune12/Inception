@@ -19,9 +19,9 @@ root.render(
           <Header />
           <div className='content'>
             <Routes>
-              <Route path='/' element={<Home />}/>
-              <Route path="/projets/:projetId" element={<Projet />} />
-              <Route path="*" element={<Error404 />} />
+              <Route path='/portfolio' element={<Home />}/>
+              <Route path="/portfolio/projets/:projetId" element={<Projet />} />
+              <Route path="/portfolio/*" element={<Error404 />} />
             </Routes>
           </div>
           <Footer />

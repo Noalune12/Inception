@@ -7,7 +7,7 @@ import Error404 from '../Error404';
 import { useParams } from 'react-router-dom';
 
 function Projet () {
-    const projets = useFetch(window.location.origin + '/data.json')
+    const projets = useFetch(window.location.origin + '/portfolio/data.json')
     const {projetId} = useParams();
 
     useEffect(() => {

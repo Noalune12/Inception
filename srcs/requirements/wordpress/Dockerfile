@@ -5,15 +5,12 @@ RUN apk add --no-cache php83 \
     php83-phar \
     php83-mbstring \
     php83-opcache \
-
-
-    # redis
     php83-ctype \
     php83-tokenizer \
     php83-redis \
     redis \
-
     curl \
+    wget \
     mariadb-client 
 
 # Create necessary directories

@@ -59,19 +59,19 @@ function Header () {
         });
     };
 
-    const isHomePage = location.pathname === '/';
+    const isHomePage = location.pathname === '/portfolio/';
 
     const handleBackClick = () => {
         if (location.pathname.startsWith('/projets/')) {
             window.history.back();
         } else {
-            navigate('/');
+            navigate('/portfolio/');
         } 
     };
       
     return (
         <header className={`${scrolled ? 'scrolled' : ''}`}>
-            <Link to="/" className='page-title' onClick={() => window.scrollTo(0, 0)}>
+            <Link to="/portfolio/" className='page-title' onClick={() => window.scrollTo(0, 0)}>
                 <img src={Logo} alt="Logo Lab" className='header-logo' />
             </Link>
             {!isHomePage ? (

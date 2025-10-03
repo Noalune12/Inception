@@ -1,5 +1,7 @@
 #!/bin/sh 
 
+set -e
+
 rm -f .wp-built
 mariadb-admin ping --protocol=tcp --host=mariadb -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" --wait >/dev/null 2>/dev/null
 if [ ! -f wp-config.php ]; then

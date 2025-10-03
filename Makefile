@@ -3,6 +3,7 @@ ENV_FILE := srcs/.env
 DATA_DIR := $(HOME)/data
 WP_DIR := $(DATA_DIR)/www-data
 DB_DIR := $(DATA_DIR)/db-data
+MAILHOG_DIR := $(DATA_DIR)/mailhog-data
 
 all: set_up_volumes up
 
@@ -17,6 +18,7 @@ set_up_volumes:
 	@mkdir -p $(DATA_DIR)
 	@mkdir -p $(WP_DIR)
 	@mkdir -p $(DB_DIR)
+	@mkdir -p $(MAILHOG_DIR)
 
 build:
 	@echo "Building Docker Images"
@@ -43,6 +45,7 @@ clean:
 	docker system prune -a -f
 	@sudo rm -rf $(WP_DIR)/
 	@sudo rm -rf $(DB_DIR)/
+	@sudo rm -rf $(MAILHOG_DIR)/
 
 ps:
 	docker compose -f $(COMPOSE_FILE) ps

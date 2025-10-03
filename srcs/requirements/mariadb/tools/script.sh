@@ -1,5 +1,7 @@
 #!/bin/sh 
 
+set -e
+
 if [ ! -d "${MYSQL_DATADIR}/mysql" ]; then
     echo "Installing MariaDB.."
     mariadb-install-db --datadir=/var/lib/mysql --skip-test-db --user=mysql --group=mysql \

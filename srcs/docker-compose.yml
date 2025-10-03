@@ -38,6 +38,7 @@ services:
       - wp-site
       - s-site
       - adminer-site
+      - mail-server
     depends_on:
       - wordpress
       - mariadb
@@ -73,6 +74,8 @@ services:
     restart: always
     networks:
       - s-site
+      - mail-server
+
 
   ftp:
     build: requirements/bonus/ftp/.
@@ -93,14 +96,49 @@ services:
   adminer:
       build: requirements/bonus/adminer/.
       container_name: adminer
-      # ports:
-      #   - 8080:8080
       depends_on:
         - mariadb 
       restart: always
       networks:
         - adminer-db
         - adminer-site
+    
+  mailhog:
+    build: requirements/bonus/mailhog/.
+    container_name: mailhog
+    depends_on:
+      - static-site
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - mail-server
+    volumes:
+      - mailhog-data:/data
+      # data = path inside the container
+    # ports:
+    #   - "8025:8025"
+    #   - "1025:1025"
+    environment:
+        # - MP_DATA_FILE=/data/mailpit.db
+        # - MP_MAX_MESSAGES=500
+        # - MP_SMTP_AUTH_ACCEPT_ANY=1
+        # - MP_SMTP_AUTH_ALLOW_INSECURE=1
+        # - MP_WEBROOT=/portfolio/mailhog
+      - MH_STORAGE=maildir
+      - MH_MAILDIR_PATH=/data
+
+  mailer-api:
+    build: requirements/bonus/mailer-api/.
+    container_name: mailer-api
+    depends_on:
+      - static-site
+      - mailhog
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - mail-server
 
 networks:
   wp-site:
@@ -112,6 +150,8 @@ networks:
   adminer-db:
     driver: bridge
   adminer-site:
+    driver: bridge
+  mail-server:
     driver: bridge
 
 volumes:
@@ -125,3 +165,8 @@ volumes:
       type: none
       device: ${HOME}/data/db-data
       o: bind
+  mailhog-data:
+     driver_opts:
+      type: none
+      device: ${HOME}/data/mailhog-data
+      o: bind 

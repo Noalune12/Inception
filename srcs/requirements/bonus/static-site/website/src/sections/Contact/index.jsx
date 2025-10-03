@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 
 function Contact () {
-    const [name, setName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Valider les entrées
@@ -22,23 +22,45 @@ function Contact () {
         return;
       }
 
-    const templateParams = {
-      from_name: name,
-      from_email: email,
-      message: message,
-    };
+    try {
+      const res = await fetch('/portfolio/api/send-mail', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      });
 
-    emailjs.send('service_portfolio', 'template_e28p80k', templateParams, '5WikpGOCXRy0R5kwI')
-      .then((response) => {
+      const result = await res.json();
+      console.log(result);
+      if (result.status === 'ok') {
         setStatus('Message envoyé !');
         setName('');
         setEmail('');
         setMessage('');
-      })
-      .catch((error) => {
+      } else {
         setStatus('Une erreur est survenue. Veuillez réessayer.');
-      });
-  };
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus('Une erreur est survenue. Veuillez réessayer.');
+    }
+    }
+    // const templateParams = {
+    //   from_name: name,
+    //   from_email: email,
+    //   message: message,
+    // };
+
+    // emailjs.send('service_portfolio', 'template_e28p80k', templateParams, '5WikpGOCXRy0R5kwI')
+    //   .then((response) => {
+    //     setStatus('Message envoyé !');
+    //     setName('');
+    //     setEmail('');
+    //     setMessage('');
+    //   })
+    //   .catch((error) => {
+    //     setStatus('Une erreur est survenue. Veuillez réessayer.');
+    //   });
+
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

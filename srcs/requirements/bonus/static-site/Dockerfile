@@ -33,7 +33,7 @@ COPY --from=build /public/ ./
 
 RUN npm install -g serve
 
-EXPOSE 3000 6000
+EXPOSE 3000
 
 ENTRYPOINT ["serve", "-s", "build", "-l", "3000"]
 

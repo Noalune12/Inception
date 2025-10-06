@@ -2,7 +2,8 @@ services:
   mariadb:
     build: requirements/mariadb/.
     container_name: mariadb
-    restart: always
+    restart: unless-stopped
+    init: true
     env_file:
      - .env
     networks:
@@ -17,7 +18,7 @@ services:
   nginx:
     build: requirements/nginx/.
     container_name: nginx
-    restart: always
+    restart: unless-stopped
     init: true
     env_file:
       - .env
@@ -37,7 +38,8 @@ services:
   wordpress:
     build: requirements/wordpress/.
     container_name: wordpress
-    restart: always
+    restart: unless-stopped
+    init: true
     env_file:
       - .env
     networks:
@@ -58,12 +60,14 @@ services:
     build: requirements/bonus/redis/.
     networks:
       - wp-site
-    restart: always
+    restart: unless-stopped
+    init: true
 
   static-site:
     container_name: static-site
     build: requirements/bonus/static-site/.
-    restart: always
+    restart: unless-stopped
+    init: true
     networks:
       - s-site
       - mail-server
@@ -71,7 +75,8 @@ services:
   ftp:
     build: requirements/bonus/ftp/.
     container_name: ftp
-    restart: always
+    restart: unless-stopped
+    init: true
     env_file:
       - .env
     networks:
@@ -86,21 +91,23 @@ services:
       - ftp_pwd
 
   adminer:
-      build: requirements/bonus/adminer/.
-      container_name: adminer
-      depends_on:
-        - mariadb 
-      restart: always
-      networks:
-        - adminer-db
-        - adminer-site
+    build: requirements/bonus/adminer/.
+    container_name: adminer
+    depends_on:
+      - mariadb 
+    restart: unless-stopped
+    init: true
+    networks:
+      - adminer-db
+      - adminer-site
     
   mailhog:
     build: requirements/bonus/mailhog/.
     container_name: mailhog
     depends_on:
       - static-site
-    restart: always
+    restart: unless-stopped
+    init: true
     env_file:
       - .env
     networks:
@@ -117,7 +124,8 @@ services:
     depends_on:
       - static-site
       - mailhog
-    restart: always
+    restart: unless-stopped
+    init: true
     env_file:
       - .env
     networks:

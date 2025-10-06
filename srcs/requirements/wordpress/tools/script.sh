@@ -38,7 +38,7 @@ if [ ! -f wp-config.php ]; then
     fi
     wp theme activate blocksy --allow-root --path=/var/www/html
 
-    wp post create --post_title="Want to see something else ?" \
+    wp post create --post_title="Portfolio" \
         --post_content="Visit my portfolio <a href='https://lbuisson.42.fr/portfolio'>here</a>." \
         --post_status=publish \
         --allow-root

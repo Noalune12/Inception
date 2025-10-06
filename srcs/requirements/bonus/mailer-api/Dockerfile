@@ -1,4 +1,4 @@
-FROM alpine:3.19 AS build
+FROM alpine:3.21 AS build
 
 RUN apk add --no-cache nodejs npm
 
@@ -8,7 +8,7 @@ COPY /conf/package*.json ./
 
 RUN npm install
 
-FROM alpine:3.19
+FROM alpine:3.21
 
 RUN apk add --no-cache nodejs npm
 

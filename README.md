@@ -103,6 +103,8 @@
 	- networks
 - volumes
 - networks
+- init: true -> if child process become zombies this allows to clean them
+- restart: unless-stopped -> restart always except if stopped manually
 ### useful commands
 - docker-compose up -d          # Démarrer en arrière-plan
 - docker-compose up --build     # Rebuilder les images avant démarrage
@@ -141,6 +143,12 @@
 	php83-redis -> communicate with redis (cache object wordpress)
 - adduser -S (system user) -D (no password - cannot connect) -G (group) www-data www
 - php-fpm83 -F -> en foreground
+- www.conf -> how process php will be handled
+	- at the beginning 2 processes ready
+	- if not a lot of trafic -> between 1 and 3
+	- if many requests -> up to 5 processes
+	- if too many -> requests wait until a process is free
+	- a request exemple : if a user access a page that needs a php file to be displayed (charge heart wordpress, theme, bdd, built html, send the page to the server)
 
 ### REDIS
 - Commands :
@@ -160,11 +168,29 @@
 
 ### FTP
 - standard network protocol used for the transfer of files from one host to another
+- conf
+	- seccomp_sandbox=NO (unable linux security -> needed for docker)
+	- local_enable=YES (allow users to connect with login/pwd)
+	- write_enable=YES (if no read only)
+	- local_umask=022 (define permission of file created 644 for files and 755 for folders)
+	- dirmessage_enable=YES (allow to show message to user in some folder)
+	- xferlog_enable=YES (transfer journalization -> var/log)
+	- connect_from_port_20=YES (port for file transfer)
+	- chroot_local_user=YES (user can only access its personal repertory, cannot go back to the arborescence)
+	- listen=YES
+	- listen_port=21
+	- local_root=/var/www/html/
+	- pam_service_name=lbuisson.42.fr
+	- allow_writeable_chroot=YES (allow to write in the repertory, if not -> Response:	500 OOPS: vsftpd: refusing to run with writable root inside chroot()
+Error:	Critical error: Could not connect to server)
+
+
+
+### MARIADB
+- conf
+	- bind-address=0.0.0.0 (listen to all the network)
+	- skip-networking=0 (network activated -> connecyion via port 3306)
 
 ## LEFT TO CHECK
-- Init true in dockercompose
-- www.conf (wordpress)
-- mariadb-server.cnf (mariadb)
-- vsftpd.conf (ftp)
 - entrypoint mailer-api + mailhog + static site -> PID 1 ?
-- article wordpress
+- reboot -> ftp

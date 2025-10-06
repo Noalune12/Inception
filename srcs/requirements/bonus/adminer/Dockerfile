@@ -4,7 +4,7 @@ RUN apk add --no-cache php php-mysqli php-session wget
 
 WORKDIR /var/www/
 
-RUN wget -O adminer.php https://www.adminer.org/latest.php 
+RUN wget -O adminer.php https://github.com/vrana/adminer/releases/download/v5.4.1/adminer-5.4.1.php
 
 EXPOSE 8080
 

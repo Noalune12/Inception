@@ -44,11 +44,12 @@ if [ ! -f wp-config.php ]; then
         --allow-root
 
     wp post create --post_title="What can you check ?" \
-    --post_content="Mariadb (with Adminer). FTP. Try to send a message on the portfolio" \
+    --post_content="$(cat checklist.html)" \
     --post_status=publish \
     --allow-root
     
     wp plugin install redis-cache --activate --allow-root
+
     wp config set WP_REDIS_HOST redis --allow-root
     wp config set WP_REDIS_PORT 6379 --raw --allow-root
     wp redis enable --allow-root

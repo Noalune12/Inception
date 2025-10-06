@@ -68,7 +68,6 @@ services:
       - s-site
       - mail-server
 
-
   ftp:
     build: requirements/bonus/ftp/.
     container_name: ftp
@@ -108,16 +107,7 @@ services:
       - mail-server
     volumes:
       - mailhog-data:/data
-      # data = path inside the container
-    # ports:
-    #   - "8025:8025"
-    #   - "1025:1025"
     environment:
-        # - MP_DATA_FILE=/data/mailpit.db
-        # - MP_MAX_MESSAGES=500
-        # - MP_SMTP_AUTH_ACCEPT_ANY=1
-        # - MP_SMTP_AUTH_ALLOW_INSECURE=1
-        # - MP_WEBROOT=/portfolio/mailhog
       - MH_STORAGE=maildir
       - MH_MAILDIR_PATH=/data
 

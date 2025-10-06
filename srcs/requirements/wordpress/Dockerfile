@@ -28,6 +28,8 @@ WORKDIR /var/www/html
 
 COPY /tools/script.sh .
 
+COPY /tools/checklist.html .
+
 RUN chmod +x script.sh
 
 RUN adduser -S -D -G www-data www

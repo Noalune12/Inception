@@ -11,7 +11,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Route de test
+// test route
 app.get("/", (req, res) => {
   res.json({ status: "API en ligne ✅" });
 });
@@ -29,7 +29,7 @@ app.post("/send-mail", async (req, res) => {
     await transporter.sendMail({
       from: email,
       to: "louanne.buisson@gmail.com",
-      subject: `Message de ${name}`,
+      subject: `Message from ${name}`,
       text: message
     });
     
@@ -40,4 +40,4 @@ app.post("/send-mail", async (req, res) => {
   }
 });
 
-app.listen(4000, '0.0.0.0', () => console.log("Mailer API dispo sur port 4000"));
+app.listen(4000, '0.0.0.0', () => console.log("Mailer APIavailable on port 4000"));

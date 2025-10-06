@@ -1,6 +1,6 @@
 import './style.scss';
 import React, { useState } from 'react';
-import emailjs from 'emailjs-com';
+// import emailjs from 'emailjs-com';
 
 function Contact () {
   const [name, setName] = useState('');
@@ -11,7 +11,6 @@ function Contact () {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Valider les entrées
     if (!name || !email || !message) {
       setStatus('Veuillez remplir tous les champs.');
       return;
@@ -43,7 +42,8 @@ function Contact () {
       console.error(err);
       setStatus('Une erreur est survenue. Veuillez réessayer.');
     }
-    }
+  }
+
     // const templateParams = {
     //   from_name: name,
     //   from_email: email,

@@ -120,6 +120,14 @@
 
 ## Containers
 
+### NGINX
+- conf
+	- proxy_http_version 1.1; -> use modern version of http
+	- proxy_set_header Host $host; -> say to backend service the real domain name
+	- proxy_set_header X-Real-IP $remote_addr; -> transmit IP of real visitor (otherwise nginx IP)
+	- proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; -> keep history of IP met
+	- proxy_set_header X-Forwarded-Proto $scheme;-> say if connexion is http or https
+
 ### WORDPRESS
 - Ajout de memory limit -> definit quantite maximale de memoire vive qu'unscript php peut utiliser - PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 36864 bytes) in phar:///usr/local/bin/wp/vendor/wp-cli/wp-cli/php/WP_CLI/Extractor.php on line 100
 - php = server language
@@ -146,3 +154,7 @@
 	- TTL keyname         - check expiration
 	- FLUSHDB             - clear current DB
 	- QUIT                - exit CLI
+
+## LEFT TO CHECK
+- Init true in dockercompose
+- www.conf (wordpress)

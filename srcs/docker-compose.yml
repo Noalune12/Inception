@@ -27,13 +27,12 @@ services:
   nginx:
     build: requirements/nginx/.
     container_name: nginx
-    # init: true
     restart: always
+    init: true
     env_file:
       - .env
     ports:
       - "443:443"
-      # - "8443:8443"
     networks:
       - wp-site
       - s-site
@@ -59,7 +58,9 @@ services:
     depends_on:
       - mariadb
       - redis
-    # healthcheck
+    secrets:
+      - wp_user_pwd
+      - wp_admin_pwd
 
   redis:
     container_name: redis
@@ -154,6 +155,12 @@ networks:
   mail-server:
     driver: bridge
 
+secrets:
+  wp_user_pwd:
+    file: ../secrets/wp_user_pwd.txt
+  wp_admin_pwd:
+    file: ../secrets/wp_admin_pwd.txt
+
 volumes:
   www-data:
     driver_opts:
@@ -170,3 +177,4 @@ volumes:
       type: none
       device: ${HOME}/data/mailhog-data
       o: bind 
+

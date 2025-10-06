@@ -2,6 +2,9 @@
 
 set -e
 
+WP_ADMIN_PWD=$(cat /run/secrets/wp_admin_pwd)
+WP_USER_PWD=$(cat /run/secrets/wp_user_pwd)
+
 rm -f .wp-built
 
 mariadb-admin ping --protocol=tcp --host=mariadb -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" --wait >/dev/null 2>/dev/null

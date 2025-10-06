@@ -1,8 +1,4 @@
 # Inception
-## !!!!! (to delete)
-1. Done on a VM
-2. all files in a srcs folder
-3. Makefile at the root (set up everything -> build the DOcker images using docker-compose.yml)
 
 ### Goal
 1. use docker compose
@@ -121,3 +117,32 @@
 - bashdocker-compose up --scale web=3    # Démarrer 3 instances du service web
 - docker-compose build api          # Rebuilder seulement le service API
 - docker-compose config             # Valider la configuration
+
+## Containers
+
+### WORDPRESS
+- Ajout de memory limit -> definit quantite maximale de memoire vive qu'unscript php peut utiliser - PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 36864 bytes) in phar:///usr/local/bin/wp/vendor/wp-cli/wp-cli/php/WP_CLI/Extractor.php on line 100
+- php = server language
+	- php83-fpm -> FastCGI -> handle process PHP to serve web request via nginx
+	- php83-mysqli -> MySQL interface -> Wordpress can communicate with Mariadb
+	- php83-mbstring -> handle strings URF-8 (special characters)
+	- php83-ctype -> verif charac types (used for plugin)
+	- php83-phar -> archives PHP -> needed for wp commands
+	- php83-opcache -> cache bytecode PHP compiled in memory -> improve perf
+	- php83-tokenizer -> lexical analysis -> can be needed for themes/plugin on modern frameworks
+	php83-redis -> communicate with redis (cache object wordpress)
+- adduser -S (system user) -D (no password - cannot connect) -G (group) www-data www
+- php-fpm83 -F -> en foreground
+
+### REDIS
+- Commands :
+	- wp redis status | grep Met
+	- redis-cli -h redis ping
+	- PING                - test connection
+	- INFO stats          - view cache hit/miss stats
+	- KEYS *              - list keys (be cautious)
+	- DBSIZE              - count keys
+	- GET keyname         - get value of key
+	- TTL keyname         - check expiration
+	- FLUSHDB             - clear current DB
+	- QUIT                - exit CLI

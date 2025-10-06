@@ -3,11 +3,12 @@
 set -e
 
 rm -f .wp-built
+
 mariadb-admin ping --protocol=tcp --host=mariadb -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" --wait >/dev/null 2>/dev/null
+
 if [ ! -f wp-config.php ]; then
     echo "Installing WordPress..."
 
-    # Download and configure WordPress
     wp core download --allow-root || true
     wp config create --allow-root \
         --dbhost=mariadb:3306 \
@@ -24,7 +25,6 @@ if [ ! -f wp-config.php ]; then
     wp option update siteurl http://$DOMAIN --allow-root
     wp option update home http://$DOMAIN --allow-root
 
-    # Create a regular user if it doesn't already exist
     if ! wp user get $WP_USER --allow-root > /dev/null 2>&1; then
         wp user create $WP_USER $WP_USER_MAIL --role=author --user_pass=$WP_USER_PWD --allow-root
     fi
@@ -48,13 +48,3 @@ touch .wp-built
 
 exec php-fpm83 -F
 
-# wp redis status | grep Met
-# redis-cli -h redis ping
-# PING                # test connection
-# INFO stats          # view cache hit/miss stats
-# KEYS *              # list keys (be cautious)
-# DBSIZE              # count keys
-# GET keyname         # get value of key
-# TTL keyname         # check expiration
-# FLUSHDB             # clear current DB
-# QUIT                # exit CLI

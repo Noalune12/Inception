@@ -87,6 +87,7 @@ services:
       - wordpress
     ports:
       - "21:21"
+      - "30000-30009:30000-30009"
     secrets:
       - ftp_pwd
 

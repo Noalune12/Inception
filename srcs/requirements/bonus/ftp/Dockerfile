@@ -4,7 +4,7 @@ RUN apk add --no-cache vsftpd
 
 COPY /conf/vsftpd.conf /etc/vsftpd/vsftpd.conf
 
-EXPOSE 21 21000-21010
+EXPOSE 21
 
 COPY /tools/script.sh .
 

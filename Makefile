@@ -7,12 +7,6 @@ MAILHOG_DIR := $(DATA_DIR)/mailhog-data
 
 all: set_up_volumes up
 
-# watch: build
-# 	docker compose -f $(COMPOSE_FILE) up --watch
-
-# nowatch:
-# 	docker compose -f $(COMPOSE_FILE) down
-
 set_up_volumes:
 	@echo "Creating data directories"
 	@mkdir -p $(DATA_DIR)

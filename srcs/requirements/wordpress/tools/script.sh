@@ -38,6 +38,16 @@ if [ ! -f wp-config.php ]; then
     fi
     wp theme activate blocksy --allow-root --path=/var/www/html
 
+    wp post create --post_title="Want to see something else ?" \
+        --post_content="Visit my portfolio <a href='https://lbuisson.42.fr/portfolio'>here</a>." \
+        --post_status=publish \
+        --allow-root
+
+    wp post create --post_title="What can you check ?" \
+    --post_content="Mariadb (with Adminer). FTP. Try to send a message on the portfolio" \
+    --post_status=publish \
+    --allow-root
+    
     wp plugin install redis-cache --activate --allow-root
     wp config set WP_REDIS_HOST redis --allow-root
     wp config set WP_REDIS_PORT 6379 --raw --allow-root

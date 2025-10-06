@@ -167,3 +167,4 @@
 - mariadb-server.cnf (mariadb)
 - vsftpd.conf (ftp)
 - entrypoint mailer-api + mailhog + static site -> PID 1 ?
+- article wordpress

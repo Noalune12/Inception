@@ -80,10 +80,11 @@ services:
     volumes:
       - www-data:/var/www/html:rw
     depends_on:
-      wordpress:
-        condition: service_started #healthy
+      - wordpress
     ports:
       - "21:21"
+    secrets:
+      - ftp_pwd
 
   adminer:
       build: requirements/bonus/adminer/.
@@ -155,6 +156,8 @@ secrets:
     file: ../secrets/db_user_pwd.txt
   db_root_pwd:
     file: ../secrets/db_root_pwd.txt
+  ftp_pwd:
+    file: ../secrets/ftp_pwd.txt
 
 volumes:
   www-data:

@@ -8,6 +8,4 @@ RUN wget -O adminer.php https://www.adminer.org/latest.php
 
 EXPOSE 8080
 
-CMD ["php", "-S", "0.0.0.0:8080", "adminer.php"] 
-
-# To get the modif from adminer -> redis needs to be flushed with redis-cli FLUSHALL
+ENTRYPOINT ["php", "-S", "0.0.0.0:8080", "adminer.php"] 

@@ -155,6 +155,14 @@
 	- FLUSHDB             - clear current DB
 	- QUIT                - exit CLI
 
+### ADMINER
+- To get the modif from adminer -> redis needs to be flushed with redis-cli FLUSHALL
+
+### FTP
+- standard network protocol used for the transfer of files from one host to another
+
 ## LEFT TO CHECK
 - Init true in dockercompose
 - www.conf (wordpress)
+- mariadb-server.cnf (mariadb)
+- vsftpd.conf (ftp)

@@ -193,4 +193,3 @@ Error:	Critical error: Could not connect to server)
 
 ## LEFT TO CHECK
 - entrypoint mailer-api + mailhog + static site -> PID 1 ?
-- reboot -> ftp

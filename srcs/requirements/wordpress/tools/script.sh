@@ -6,8 +6,6 @@ WP_ADMIN_PWD=$(cat /run/secrets/wp_admin_pwd)
 WP_USER_PWD=$(cat /run/secrets/wp_user_pwd)
 MYSQL_USER_PWD=$(cat /run/secrets/db_user_pwd)
 
-rm -f .wp-built
-
 mariadb-admin ping --protocol=tcp --host=mariadb -u "$MYSQL_USER" --password="$MYSQL_USER_PWD" --wait >/dev/null 2>/dev/null
 
 if [ ! -f wp-config.php ]; then
@@ -53,12 +51,13 @@ if [ ! -f wp-config.php ]; then
     wp config set WP_REDIS_HOST redis --allow-root
     wp config set WP_REDIS_PORT 6379 --raw --allow-root
     wp redis enable --allow-root
+    
+    chown -R www:www-data /var/www/html
 
 else
     echo "WordPress is already installed."
 fi
 
-chown -R www:www-data /var/www/html
 touch .wp-built
 
 exec php-fpm83 -F

@@ -191,5 +191,30 @@ Error:	Critical error: Could not connect to server)
 	- bind-address=0.0.0.0 (listen to all the network)
 	- skip-networking=0 (network activated -> connecyion via port 3306)
 
-## LEFT TO CHECK
-- entrypoint mailer-api + mailhog + static site -> PID 1 ?
+## +
+- Docker network :
+	- Permet aux conteneurs de communiquer entre eux
+	- bridge : isole du host, les conteneurs peuvent se ping entre eux par leur nom de service
+- Docker
+	- technologie de conteneurisation qui exec des applications dans des env isoles, legers et reproductibles
+	- Chaque conteneur partage le noyau linux de l'hote
+	- conteneurs sont crees a partir d'images qui sont basees sur des Dockerfile
+	- lamce un seul DOckre
+- Docker Compose
+	- outil d'orchestration de conteneurs
+	- gere un ense;ble de conteneaux, reseaux et volumes
+- Docker image
+	- sans compose: construction et lancement manuelle de chaque image et conteneur (docker build et docker run)
+	- avec compose: automatisation de la construction et lancement
+- Docker vs VM
+	- Leger vs lourds
+	- demarrage instantanne vs lent
+	- partage le noyau de l'hote vs a son propre OS
+	- processus isole vs isolement total
+- Structure:
+	- simplifie la reutilistion de dockercompose
+	- chaque service a son dossier
+	- build isole
+	- possible de modifier un service snas tout casser
+- Image (recette de cuisine) decrit ce qui doit etre installe
+- Conteneur (plat) programme qui tourne grace a cette image (on peut lancer plusieurs conteneurs a partir de la meme image)
